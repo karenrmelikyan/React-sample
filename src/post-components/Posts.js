@@ -4,6 +4,7 @@ import PostForm from "./PostForm";
 import PostSelect from "./PostSelect";
 import SearchPosts from "./SearchPosts";
 import MyModal from "./UI/modal/MyModal";
+import './UI/app.css';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
@@ -52,6 +53,7 @@ function Posts() {
                     ? <PostsList posts={searchedPosts} removePost={removePost}/>
                     : <h2>Posts don't exists</h2>
             }
+
         </div>
     );
 }

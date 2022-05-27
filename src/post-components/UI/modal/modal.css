@@ -3,7 +3,7 @@
     width: 100vw;
     background: rgb(0,0,0, 0.4);
     position: fixed;
-    /* To glue to top, left corner of browser*/
+    /* To glue to top, left corner of browser */
     top: 0;
     left: 0;
 
@@ -26,7 +26,6 @@
 
 
 .modal.active {
-     /* */
     opacity: 1;
     pointer-events: all;
 }
