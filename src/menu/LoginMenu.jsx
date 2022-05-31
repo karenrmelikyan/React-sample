@@ -3,13 +3,10 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {Link} from "react-router-dom";
-import {useContext} from "react";
-import {AuthContext} from "../context";
 
-export default function BasicMenu() {
+export default function LoginMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const {setIsAuth} = useContext(AuthContext);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -22,11 +19,6 @@ export default function BasicMenu() {
         textDecoration: "none",
         color: 'black'
     };
-
-    function logout() {
-        setIsAuth(false);
-        localStorage.removeItem('auth');
-    }
 
     return (
         <div>
@@ -49,10 +41,7 @@ export default function BasicMenu() {
                 }}
             >
 
-                <Link to={'/posts'} style={linkStyle}><MenuItem onClick={handleClose}>Posts</MenuItem>  </Link>
-                <Link to={'/about'} style={linkStyle}><MenuItem onClick={handleClose}>About US</MenuItem></Link>
-                <Link to={'/'} style={linkStyle}><MenuItem onClick={handleClose}>Home</MenuItem></Link>
-                <Link to={''} style={linkStyle}><MenuItem onClick={logout}>LogOut</MenuItem></Link>
+                <Link to={'/login'} style={linkStyle}><MenuItem onClick={handleClose}>LogIn</MenuItem>  </Link>
 
             </Menu>
         </div>

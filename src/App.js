@@ -1,26 +1,16 @@
-import React from "react";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import BasicMenu from "./menu/BasicMenu";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Posts from "./pages/Posts";
-import Post from "./pages/Post";
-import NotFound from "./pages/NotFound";
+import React, {useState} from "react";
+import AppRoutes from "./routes/AppRoutes";
+import {AuthContext} from './context';
 
 function App() {
+    const [isAuth, setIsAuth] = useState(false);
     return (
-        <div>
-            <BrowserRouter>
-                <BasicMenu />
-                <Routes>
-                    <Route path={'/'} element={<Home />}/>
-                    <Route path={'/about'} element={<About />}/>
-                    <Route path={'/posts'} element={<Posts />}/>
-                    <Route path={'/post/:id'} element={<Post />}/>
-                    <Route path={'*'} element={<NotFound/>}/>
-                </Routes>
-            </BrowserRouter>
-        </div>
+          <AuthContext.Provider value={{
+              isAuth,
+              setIsAuth,
+          }}>
+              <AppRoutes />
+          </AuthContext.Provider>
     );
 }
 
