@@ -1,22 +1,23 @@
-import React, {useMemo, useState} from "react";
-import PostsList from "./PostsList";
-import PostForm from "./PostForm";
-import PostSelect from "./PostSelect";
-import SearchPosts from "./SearchPosts";
-import MyModal from "./UI/modal/MyModal";
-import './UI/app.css';
+import React, {useEffect, useState} from "react";
+import PostsList from "../post-components/PostsList";
+import PostForm from "../post-components/PostForm";
+import PostSelect from "../post-components/PostSelect";
+import PostsSearch from "../post-components/PostsSearch";
+import MyModal from "../post-components/UI/modal/MyModal";
+import usePostsSearch from "../post-components/hooks/usePostsSearch";
+import '../post-components/UI/app.css';
+import {data} from "../post-components/storage/storage";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [active, setActive] =useState(false);
 
-    const searchedPosts = useMemo(() => {
-        if(searchQuery) {
-            return posts.filter((post) => post.title.includes(searchQuery));
-        }
-        return posts;
-    }, [searchQuery, posts])
+    const searchedPosts = usePostsSearch(posts, searchQuery);
+
+    useEffect(() => {
+        setPosts(data);
+    }, []);
 
     function sortPosts(value) {
         if (posts.length > 1) {
@@ -29,7 +30,7 @@ function Posts() {
     }
 
     function createPost(newPost) {
-        setPosts([...posts, newPost])
+        setPosts([...posts, newPost]);
     }
 
     return(
@@ -41,7 +42,7 @@ function Posts() {
 
             <button onClick={() => setActive(true)}>Add Posts</button>
 
-            <SearchPosts searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+            <PostsSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
             <PostSelect options={[
                 {value: 'title', name: 'title'},

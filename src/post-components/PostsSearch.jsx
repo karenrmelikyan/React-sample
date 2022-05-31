@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchPosts({searchQuery, setSearchQuery}) {
+function PostsSearch({searchQuery, setSearchQuery}) {
     return (
         <div>
             <input
@@ -13,4 +13,4 @@ function SearchPosts({searchQuery, setSearchQuery}) {
     );
 }
 
-export default SearchPosts;
+export default PostsSearch;
